@@ -5,7 +5,8 @@ import { Input, Textarea, Select } from '@/components/ui/Input';
 import { SectionTitle } from '@/components/ui/Toggle';
 import { CopyButton } from '@/components/ui/CopyButton';
 import { AIDisclaimer, AILabel, EmptyState, Spinner } from '@/components/ui/Feedback';
-import { generateEmail, withDelay, type EmailInput } from '@/lib/mockAI';
+import { type EmailInput } from '@/lib/mockAI';
+import { createEmail } from '@/lib/ai';
 import { downloadText } from '@/lib/utils';
 import { Mail, Sparkles, RefreshCw, Download, Trash2, Edit3, Check } from 'lucide-react';
 
@@ -29,10 +30,9 @@ export function EmailGenerator({ onActivity }: Props) {
   const handleGenerate = async () => {
     setLoading(true);
     setResult('');
-    const email = generateEmail(form);
-    const delayed = await withDelay(email, 1100);
-    setResult(delayed);
-    setEdited(delayed);
+    const email = await createEmail(form);
+    setResult(email);
+    setEdited(email);
     setLoading(false);
     onActivity('Email generated', `To: ${form.recipient || '—'} • ${form.tone} tone`);
   };

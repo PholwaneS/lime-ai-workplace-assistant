@@ -86,7 +86,7 @@ export function Spinner({ className = '' }: { className?: string }) {
 
 export function Alert({ type, children }: { type: 'info' | 'warning' | 'error' | 'success'; children: ReactNode }) {
   const config = {
-    info: { icon: Info, cls: 'bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800/50' },
+    info: { icon: Info, cls: 'bg-[#F5F0E8] dark:bg-navy-800 text-navy-700 dark:text-[#E8DFD0] border-[#E8DFD0] dark:border-navy-700' },
     warning: { icon: AlertTriangle, cls: 'bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300 border-amber-200 dark:border-amber-800/50' },
     error: { icon: XCircle, cls: 'bg-red-50 dark:bg-red-900/20 text-red-700 dark:text-red-300 border-red-200 dark:border-red-800/50' },
     success: { icon: CheckCircle2, cls: 'bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300 border-green-200 dark:border-green-800/50' },

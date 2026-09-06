@@ -2,6 +2,7 @@ import { type ViewKey } from '@/types';
 import { useTheme } from '@/context/ThemeContext';
 import { Sun, Moon, Menu, Sparkles } from 'lucide-react';
 import { NAV_ITEMS } from './Sidebar';
+import { isGeminiConfigured } from '@/lib/ai';
 
 interface TopBarProps {
   current: ViewKey;
@@ -31,7 +32,7 @@ export function TopBar({ current, onMobileMenu }: TopBarProps) {
       <div className="flex items-center gap-3">
         <div className="hidden sm:flex items-center gap-1.5 text-xs text-teal-600 dark:text-teal-400 font-medium px-3 py-1.5 rounded-full bg-teal-50 dark:bg-teal-900/20">
           <Sparkles className="w-3.5 h-3.5" />
-          Prototype Mode
+          {isGeminiConfigured ? 'Gemini AI' : 'Prototype Mode'}
         </div>
         <button
           onClick={toggle}

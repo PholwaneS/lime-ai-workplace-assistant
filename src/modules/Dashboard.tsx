@@ -25,8 +25,7 @@ export function Dashboard({ onNavigate, activities }: DashboardProps) {
     <div className="space-y-6 animate-fade-in">
       {/* Welcome banner */}
       <Card className="overflow-hidden">
-        <div className="relative bg-gradient-to-br from-navy-800 via-navy-900 to-navy-950 px-6 py-8 md:px-8 md:py-10">
-          <div className="absolute top-0 right-0 w-64 h-64 bg-teal-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+        <div className="relative bg-navy-900 px-6 py-8 md:px-8 md:py-10">
           <div className="relative">
             <Badge variant="teal">
               <Sparkles className="w-3 h-3" /> AI Workplace Productivity
@@ -41,13 +40,13 @@ export function Dashboard({ onNavigate, activities }: DashboardProps) {
             <div className="flex flex-wrap gap-3 mt-5">
               <button
                 onClick={() => onNavigate('email')}
-                className="inline-flex items-center gap-2 rounded-lg bg-teal-500 hover:bg-teal-600 px-4 py-2.5 text-sm font-medium text-white transition-colors"
+                className="inline-flex items-center gap-2 rounded-lg bg-[#E8DFD0] hover:bg-[#D8CAB5] px-4 py-2.5 text-sm font-medium text-[#171717] transition-colors"
               >
                 Get Started <ArrowRight className="w-4 h-4" />
               </button>
               <button
                 onClick={() => onNavigate('chatbot')}
-                className="inline-flex items-center gap-2 rounded-lg bg-navy-700 hover:bg-navy-600 px-4 py-2.5 text-sm font-medium text-white transition-colors"
+                className="inline-flex items-center gap-2 rounded-lg border border-navy-600 bg-transparent hover:bg-navy-800 px-4 py-2.5 text-sm font-medium text-white transition-colors"
               >
                 <MessageSquare className="w-4 h-4" /> Ask AI Assistant
               </button>
@@ -68,9 +67,9 @@ export function Dashboard({ onNavigate, activities }: DashboardProps) {
               onClick={() => onNavigate(item.key)}
               className="group text-left"
             >
-              <Card className="h-full hover:shadow-lg hover:border-teal-300 dark:hover:border-teal-700 transition-all duration-200 group-hover:-translate-y-0.5">
+              <Card className="h-full hover:shadow-md hover:border-navy-400 dark:hover:border-navy-600 transition-all duration-200 group-hover:-translate-y-0.5">
                 <div className="p-5">
-                  <div className="w-11 h-11 rounded-xl bg-teal-100 dark:bg-teal-900/30 flex items-center justify-center text-teal-600 dark:text-teal-400 mb-3 group-hover:scale-110 transition-transform">
+                  <div className="w-11 h-11 rounded-lg bg-[#E8DFD0] dark:bg-navy-700 flex items-center justify-center text-navy-900 dark:text-[#E8DFD0] mb-3 transition-colors">
                     {item.icon}
                   </div>
                   <h4 className="font-semibold text-navy-900 dark:text-navy-50 text-sm mb-1">{item.label}</h4>

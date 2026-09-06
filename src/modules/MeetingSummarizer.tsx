@@ -5,7 +5,8 @@ import { Textarea } from '@/components/ui/Input';
 import { SectionTitle } from '@/components/ui/Toggle';
 import { CopyButton } from '@/components/ui/CopyButton';
 import { AIDisclaimer, AILabel, EmptyState, Spinner, Badge } from '@/components/ui/Feedback';
-import { summarizeMeeting, withDelay, type MeetingSummary } from '@/lib/mockAI';
+import { type MeetingSummary } from '@/lib/mockAI';
+import { createMeetingSummary } from '@/lib/ai';
 import { downloadText } from '@/lib/utils';
 import { FileText, Sparkles, Download, Trash2, CheckCircle2, ListTodo, Users, Calendar, ClipboardList, Edit3, Check } from 'lucide-react';
 
@@ -40,12 +41,11 @@ export function MeetingSummarizer({ onActivity }: Props) {
     setLoading(true);
     setResult(null);
     setEditing(false);
-    const summary = summarizeMeeting(notes);
-    const delayed = await withDelay(summary, 1200);
-    setResult(delayed);
-    setEditedSummary(delayed.summary);
+    const summary = await createMeetingSummary(notes);
+    setResult(summary);
+    setEditedSummary(summary.summary);
     setLoading(false);
-    onActivity('Meeting notes summarised', `${delayed.decisions.length} decisions, ${delayed.actionItems.length} action items`);
+    onActivity('Meeting notes summarised', `${summary.decisions.length} decisions, ${summary.actionItems.length} action items`);
   };
 
   const handleSaveEdit = () => {

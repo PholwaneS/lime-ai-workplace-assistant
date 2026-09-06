@@ -5,7 +5,8 @@ import { Input, Select } from '@/components/ui/Input';
 import { SectionTitle, Toggle } from '@/components/ui/Toggle';
 import { CopyButton } from '@/components/ui/CopyButton';
 import { AIDisclaimer, AILabel, EmptyState, Spinner, Badge } from '@/components/ui/Feedback';
-import { generatePlan, withDelay, type PlannedSlot, type TaskPlanInput } from '@/lib/mockAI';
+import { type PlannedSlot, type TaskPlanInput } from '@/lib/mockAI';
+import { createTaskPlan } from '@/lib/ai';
 import { downloadText } from '@/lib/utils';
 import { CalendarCheck, Sparkles, Trash2, Plus, Download, AlertTriangle, Clock, Flag } from 'lucide-react';
 
@@ -52,11 +53,10 @@ export function TaskPlanner({ onActivity }: Props) {
       workingHoursPerDay: workingHours,
       planType,
     };
-    const result = generatePlan(input);
-    const delayed = await withDelay(result, 1200);
-    setPlan(delayed);
+    const result = await createTaskPlan(input);
+    setPlan(result);
     setLoading(false);
-    onActivity('Task plan generated', `${planType} plan • ${delayed.length} slots`);
+    onActivity('Task plan generated', `${planType} plan • ${result.length} slots`);
   };
 
   const toggleComplete = (key: string) => {

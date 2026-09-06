@@ -94,7 +94,7 @@ export interface MeetingSummary {
   actionItems: { item: string; person: string; deadline: string }[];
 }
 
-const MONTHS = 'January|February|March|April|May|June|July|August|September|October|November|December';
+const MONTHS = '(?:January|February|March|April|May|June|July|August|September|October|November|December)';
 const DAYS = 'Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday';
 
 function detectDeadline(line: string): string {

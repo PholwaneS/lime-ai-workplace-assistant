@@ -45,8 +45,8 @@ export function Sidebar({ current, onNavigate, collapsed, onToggleCollapse, acti
     >
       {/* Logo */}
       <div className="flex items-center gap-3 px-5 h-16 shrink-0 border-b border-navy-800">
-        <div className="w-9 h-9 rounded-xl bg-teal-500 flex items-center justify-center shrink-0">
-          <Sparkles className="w-5 h-5 text-white" />
+        <div className="w-9 h-9 rounded-lg bg-[#E8DFD0] flex items-center justify-center shrink-0">
+          <Sparkles className="w-5 h-5 text-[#171717]" />
         </div>
         {!collapsed && (
           <div className="overflow-hidden">
@@ -75,7 +75,7 @@ export function Sidebar({ current, onNavigate, collapsed, onToggleCollapse, acti
               onClick={() => onNavigate(item.key)}
               className={`w-full flex items-center gap-3 rounded-xl px-3 py-2.5 transition-all duration-200 group ${
                 active
-                  ? 'bg-teal-500 text-white shadow-md'
+                  ? 'bg-[#E8DFD0] text-[#171717]'
                   : 'text-navy-300 hover:bg-navy-800 hover:text-white'
               }`}
               title={collapsed ? item.label : undefined}
@@ -84,7 +84,7 @@ export function Sidebar({ current, onNavigate, collapsed, onToggleCollapse, acti
               {!collapsed && (
                 <div className="text-left overflow-hidden">
                   <p className="text-sm font-medium whitespace-nowrap">{item.label}</p>
-                  <p className={`text-xs ${active ? 'text-teal-50' : 'text-navy-500'} truncate`}>{item.description}</p>
+                  <p className={`text-xs ${active ? 'text-navy-600' : 'text-navy-500'} truncate`}>{item.description}</p>
                 </div>
               )}
             </button>

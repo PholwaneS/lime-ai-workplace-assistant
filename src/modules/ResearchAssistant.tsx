@@ -5,7 +5,8 @@ import { Textarea } from '@/components/ui/Input';
 import { SectionTitle } from '@/components/ui/Toggle';
 import { CopyButton } from '@/components/ui/CopyButton';
 import { AIDisclaimer, AILabel, EmptyState, Spinner, Badge, Alert } from '@/components/ui/Feedback';
-import { generateResearch, withDelay, type ResearchResult } from '@/lib/mockAI';
+import { type ResearchResult } from '@/lib/mockAI';
+import { createResearch } from '@/lib/ai';
 import { downloadText } from '@/lib/utils';
 import { Search, Sparkles, Download, Trash2, CheckCircle2, AlertTriangle, Lightbulb, FileSearch, ShieldCheck } from 'lucide-react';
 
@@ -21,9 +22,8 @@ export function ResearchAssistant({ onActivity }: Props) {
   const handleGenerate = async () => {
     setLoading(true);
     setResult(null);
-    const research = generateResearch(topic);
-    const delayed = await withDelay(research, 1400);
-    setResult(delayed);
+    const research = await createResearch(topic);
+    setResult(research);
     setLoading(false);
     onActivity('Research generated', topic.slice(0, 50) || '—');
   };

@@ -3,7 +3,7 @@ import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Textarea } from '@/components/ui/Input';
 import { AIDisclaimer, AILabel, LoadingDots, EmptyState } from '@/components/ui/Feedback';
-import { generateChatResponse, withDelay } from '@/lib/mockAI';
+import { createChatResponse } from '@/lib/ai';
 import { type ChatMessage } from '@/types';
 import { MessageSquare, Send, User, Bot, Trash2 } from 'lucide-react';
 
@@ -44,12 +44,11 @@ export function Chatbot({ onActivity }: Props) {
     setInput('');
     setLoading(true);
 
-    const response = generateChatResponse(content);
-    const delayed = await withDelay(response, 900);
+    const response = await createChatResponse(content, [...messages, userMsg]);
     const aiMsg: ChatMessage = {
       id: crypto.randomUUID(),
       role: 'assistant',
-      content: delayed,
+      content: response,
       timestamp: Date.now(),
     };
     setMessages((prev) => [...prev, aiMsg]);
