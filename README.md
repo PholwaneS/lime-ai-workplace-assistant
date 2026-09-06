@@ -40,7 +40,7 @@ Without the environment variables, the app intentionally runs in Prototype Mode 
 3. In Bolt, open Database > Secrets.
 4. Create a secret named `GEMINI_API_KEY` and paste the key there.
 5. Optionally create `GEMINI_MODEL` with the value `gemini-2.5-flash`.
-6. Confirm that Bolt supplies `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` to the frontend.
+6. The frontend calls the deployed `gemini-assistant` function URL. If the backend changes, set `VITE_GEMINI_FUNCTION_URL` to the new function URL.
 7. Deploy the `gemini-assistant` server function and republish the site.
 
 Never put the Gemini API key in `.env`, frontend code, screenshots or GitHub.

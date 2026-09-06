@@ -12,21 +12,19 @@ import {
 } from '@/lib/mockAI';
 import type { ChatMessage } from '@/types';
 
-const apiUrl = import.meta.env.VITE_SUPABASE_URL;
-const anonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
+const functionUrl = import.meta.env.VITE_GEMINI_FUNCTION_URL
+  || 'https://vsfwjlqjpovulhvgystz.supabase.co/functions/v1/gemini-assistant';
 
-export const isGeminiConfigured = Boolean(apiUrl && anonKey);
+export const isGeminiConfigured = Boolean(functionUrl);
 
 async function callGemini<T>(mode: string, input: unknown, fallback: () => T): Promise<T> {
   if (!isGeminiConfigured) return fallback();
 
   try {
-    const response = await fetch(`${apiUrl}/functions/v1/gemini-assistant`, {
+    const response = await fetch(functionUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${anonKey}`,
-        apikey: anonKey,
       },
       body: JSON.stringify({ mode, input }),
     });
